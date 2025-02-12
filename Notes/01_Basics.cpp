@@ -11,7 +11,7 @@
 
 Data Types
   - int : 4 butes
-  - car : 1 byte
+  - char : 1 byte
   - float : 4 bytes
   - bool : 1 byte
   - double : 8 bytes
