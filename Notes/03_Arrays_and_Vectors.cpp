@@ -1,10 +1,11 @@
 
 # C++ Arrays Notes
 
-## 1. Introduction to Arrays
+## 1. Introduction to Arrays (1st DS)
 - An Array is a collection of elements of the same data type stored in contiguous memory locations.
 - You can access elements using their position (index) ( 0 to size-1 )
 - Array is linear
+-  If you want to prevent modification of an array, use const.
 
 ### **Why Use Arrays?**
 - Store multiple values under one variable name
@@ -88,6 +89,7 @@ for(int i = 0; i < 5; i++) {
 ---
 
 ## 6. Common Array Operations
+
 ### **Finding Maximum Element**
 ```cpp
 int maxVal = arr[0];
@@ -132,13 +134,44 @@ for(int i = 0; i < rows; i++) {
 ---
 
 ## 8. Passing Arrays to Functions
+ - When you pass an array to a function using int arr[] or int *arr, you are actually passing a pointer to the first element of the array.
+ - The function does not create a copy of the entire array.
+ - Any modifications inside the function will affect the original array.
 ```cpp
-void printArray(int arr[], int size) {
-    for(int i = 0; i < size; i++) {
-        cout << arr[i] << " ";
-    }
+#include <iostream>
+using namespace std;
+
+void modifyArray(int arr[], int size) {
+    arr[0] = 100;  // Modifying the first element
 }
+int main() {
+    int numbers[] = {1, 2, 3, 4, 5};
+    modifyArray(numbers, 5);
+    cout << "First element after modification: " << numbers[0] << endl; 
+    return 0;
+}
+Output - First element after modification: 100
+
 ```
+## 9.  Pass by Reference
+ - When passing a single variable by reference using &, the function gets a reference to the original variable.
+ - Any modifications made inside the function directly affect the original variable.
+eg-  
+#include <iostream>
+using namespace std;
+void modify(int &x) {  
+    x = 100;  // Directly modifying the original variable
+}
+int main() {
+    int num = 10;
+    modify(num);
+    cout << "Modified value: " << num << endl;  
+    return 0;
+}
+Output - Modified value: 100
+
+
+
 Calling the function:
 ```cpp
 int arr[] = {1, 2, 3};
@@ -147,7 +180,52 @@ printArray(arr, 3);
 
 ---
 
-## 9. Advantages and Disadvantages of Arrays
+##10. Linear Search
+
+Linear search is a simple searching algorithm that checks each element in the array one by one.
+
+Algorithm:
+ - Start from the first element.
+ - Compare each element with the target value.
+ - If a match is found, return the index.
+ - If the loop ends without finding the target, return -1.
+ eg-
+#include <iostream>
+using namespace std;
+int linearSearch(int arr[], int size, int key) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == key)
+            return i;  // Return index if found
+    }
+    return -1;  // Not found
+}
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int key = 30;
+    int result = linearSearch(arr, size, key);  
+    if (result != -1)
+        cout << "Element found at index: " << result << endl;
+    else
+        cout << "Element not found" << endl;
+    return 0;
+}
+Output - Element found at index: 2
+
+Time Complexity:
+ - Best case: O(1) (if the element is the first one).
+ - Worst case: O(n) (if the element is at the end or not present).
+ - Average case: O(n/2) ≈ O(n).
+
+Use Cases:
+✔ Useful for small datasets.
+✔ Works with unsorted arrays.
+✔ Simple and easy to implement.
+---
+
+---
+
+## 10. Advantages and Disadvantages of Arrays
 ### **Advantages:**
 - Fast access using indices
 - Easy to implement
@@ -160,7 +238,7 @@ printArray(arr, 3);
 
 ---
 
-## 10. Alternative: Dynamic Arrays
+## 11. Alternative: Dynamic Arrays
 ```cpp
 int* arr = new int[size];
 // Use the array
