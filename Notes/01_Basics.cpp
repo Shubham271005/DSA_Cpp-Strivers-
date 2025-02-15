@@ -119,6 +119,8 @@ Nested Loops
               }
               }
 -----------------------------------------------------------------------------
+  INT_MAX means +infinity in C++
+  INT_MIN means -infinity
 
 Patterns  ( usually for loop )
 
