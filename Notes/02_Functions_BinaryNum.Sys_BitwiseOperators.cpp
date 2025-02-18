@@ -55,6 +55,13 @@ eg-
      cout << b << endl;               //  4
     return 0;                         //  It shows that value of a and b are same i.e. 5 and 4 in main function
     }
+
+For making changes in original argument (Pass by Reference)  
+  just put '&' before the variable in the argument 
+      eg-  in above function 
+             int sum(int &a , int &b)
+ - In arrays , it is default pass by reference . Except arrays, in everything , use '&' for pass by reference
+ 
 ---------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------
 Binary Number System (0/1)
