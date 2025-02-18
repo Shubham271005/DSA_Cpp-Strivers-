@@ -7,6 +7,10 @@
       return 0;
       }
 ------------------------------------------------------------------------------
+- for including all the libraries, use
+     #include<bits/stdc++.h>
+------------------------------------------------------------------------------
+  
   Variables are containers to store data
 
 Data Types
