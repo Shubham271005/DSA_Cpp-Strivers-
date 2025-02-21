@@ -1,7 +1,10 @@
 # C++ STL Notes
 
 ## 1. Introduction
-The **Standard Template Library (STL)** in C++ provides pre-built data structures and algorithms, making coding efficient. It has four main components:
+The **Standard Template Library (STL)** in C++ provides pre-built data structures and algorithms, making coding efficient.
+It makees C++ code efficient and reduces code complexity.
+
+It has four main components:
 - **Containers** – Store data (`vector`, `list`, `set`, `map`, etc.).
 - **Iterators** – Traverse elements in containers.
 - **Algorithms** – Sorting, Searching, etc.
@@ -117,5 +120,5 @@ dq.pop_front();
 ---
 
 ## Conclusion
-C++ STL simplifies coding by providing **efficient, optimized** data structures and algorithms. 🚀 Master it with **consistent practice**!
+C++ STL simplifies coding by providing **efficient, optimized** data structures and algorithms. 
 
