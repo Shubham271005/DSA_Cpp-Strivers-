@@ -11,114 +11,211 @@ It has four main components:
 - **Function Objects (Functors)** – Functions inside objects.
 
 ---
+#include <bits/stdc++.h>
+using namespace std;
 
-## 2. Containers
 
-### (i) Sequence Containers (Linear Storage)
-- `vector` – Dynamic array, fast access (`O(1)`).
-- `list` – Doubly Linked List, efficient insertions (`O(1)`).
-- `deque` – Double-ended queue.
-- `array` – Fixed-size array.
-- `forward_list` – Singly Linked List.
+## **PAIRS**
+void explainPairs()
+{
+    pair<int, int> p = {1, 3};
+    cout << p.first << " " << p.second;
 
-```cpp
-vector<int> v = {1, 2, 3};  
-v.push_back(4);  
-v.pop_back();  
-cout << v[0];  
-```
+    pair<int, pair<int, int>> p2 = {1, {3, 4}};
+    cout << p2.first << " " << p2.second.second << " " << p2.second.first;
 
-### (ii) Associative Containers (Sorted, Unique Keys)
-- `set` – Stores unique elements in sorted order.
-- `map` – Key-value pairs (sorted).
-- `multiset` – Allows duplicate keys.
-- `multimap` – Key-value pairs (duplicates allowed).
+    pair<int, int> arr[] = {{1, 2}, {2, 5}, {5, 1}};
+    cout << arr[1].second;
+}
+// Output:
+// 1 3
+// 1 4 3
+// 5
 
-```cpp
-map<int, string> mp;  
-mp[1] = "Alice";  
-mp[2] = "Bob";  
-cout << mp[1];  // Output: Alice  
-```
+## **VECTORS**
+void explainVectors()
+{
+    vector<int> v;
+    v.push_back(1);
+    v.emplace_back(2); // push_back and emplace_back works the same
+    // but generally emplace_back is faster than push_back()
+    
+    vector<int> copy(2, 50);
+    v.insert(v.begin(), copy.begin(), copy.end());
+    
+    cout << "Vector elements: ";
+    for (auto it : v)
+    {
+        cout << it << " ";
+    }
+    cout << endl;
+}
+// Output:
+// Vector elements: 50 50 1 2
 
-### (iii) Unordered Containers (Faster Lookup, Unsorted)
-- `unordered_set` – Unique elements, fast lookup (`O(1)`).  
-- `unordered_map` – Key-value pairs, fast lookup (`O(1)`).
+void explainList()
+{
+    list<int> ls;
+    ls.push_back(2);
+    ls.emplace_back(4);
+    ls.push_front(5);
+    ls.emplace_front();
+}
 
----
+void explainDeque()
+{
+    deque<int> dq;
+    dq.push_back(1);
+    dq.emplace_back(2);
+    dq.push_front(4);
+    dq.emplace_front(3);
+    dq.pop_back();
+    dq.pop_front();
+    dq.back();
+    dq.front();
+}
 
-## 3. Iterators
-Used to **traverse containers** in STL.
+void explainStack()
+{
+    stack<int> st;
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    st.push(3);
+    st.emplace(5);
+    cout << st.top();
+    st.pop();
+    cout << st.top();
+    cout << st.size();
+    cout << st.empty();
+    stack<int> st1, st2;
+    st1.swap(st2);
+}
 
-```cpp
-vector<int> v = {10, 20, 30};  
-vector<int>::iterator it = v.begin();  
-cout << *it;  // Output: 10  
-```
+void explainQueue()
+{
+    queue<int> q;
+    q.push(1);
+    q.push(2);
+    q.emplace(4);
+    q.back() += 5;
+    cout << q.back();
+    cout << q.front();
+    q.pop();
+    cout << q.front();
+}
 
----
+void explainPQ()
+{
+    priority_queue<int> pq;
+    pq.push(5);
+    pq.push(2);
+    pq.push(8);
+    pq.emplace(10);
+    cout << pq.top();
+    pq.pop();
+    cout << pq.top();
 
-## 4. Algorithms
-Some useful STL algorithms:
-- **Sorting:** `sort(v.begin(), v.end())`
-- **Reversing:** `reverse(v.begin(), v.end())`
-- **Binary Search:** `binary_search(v.begin(), v.end(), key)`
-- **Lower Bound:** `lower_bound(v.begin(), v.end(), key)`
-- **Sum of Elements:** `accumulate(v.begin(), v.end(), 0)`
+    priority_queue<int, vector<int>, greater<int>> min_pq;
+    min_pq.push(5);
+    min_pq.push(2);
+    min_pq.push(8);
+    min_pq.emplace(10);
+    cout << min_pq.top();
+}
 
-```cpp
-vector<int> v = {3, 1, 4, 2};  
-sort(v.begin(), v.end());  
-```
+void explainSet()
+{
+    set<int> st;
+    st.insert(1);
+    st.emplace(2);
+    st.insert(4);
+    st.insert(3);
+    auto it = st.find(3);
+    st.erase(5);
+    int cnt = st.count(1);
+    st.erase(it);
+    auto it1 = st.find(2);
+    auto it2 = st.find(4);
+    st.erase(it1, it2);
+}
 
----
+void explainMultiSet()
+{
+    multiset<int> ms;
+    ms.insert(1);
+    ms.insert(1);
+    ms.insert(1);
+    ms.erase(1);
+    int cnt = ms.count(1);
+    ms.erase(ms.find(1));
+    ms.erase(ms.find(1), ms.find(2));
+}
 
-## 5. Priority Queue (Heap)
+void explainUSet()
+{
+    unordered_set<int> st;
+}
 
-### Max Heap
-```cpp
-priority_queue<int> pq;
-pq.push(10);
-pq.push(20);
-cout << pq.top();  // Output: 20  
-```
+void explainMap()
+{
+    map<int, int> mpp;
+    mpp[1] = 2;
+    mpp.emplace(3, 1);
+    mpp.insert({2, 4});
+    for (auto it : mpp)
+    {
+        cout << it.first << " " << it.second << endl;
+    }
+    auto it = mpp.find(3);
+}
 
-### Min Heap
-```cpp
-priority_queue<int, vector<int>, greater<int>> pq;
-pq.push(10);
-pq.push(20);
-cout << pq.top();  // Output: 10  
-```
+void explainMultimap()
+{
+}
 
----
+void explainUnorderedMap()
+{
+}
 
-## 6. Stack & Queue
+bool comp(pair<int, int> p1, pair<int, int> p2)
+{
+    if (p1.second < p2.second)
+        return true;
+    if (p1.second > p2.second)
+        return false;
+    return p1.first > p2.first;
+}
 
-### Stack (LIFO)
-```cpp
-stack<int> st;  
-st.push(10);  
-cout << st.top();  // Output: 10  
-```
+void explainExtra()
+{
+    int num = 7;
+    int cnt = __builtin_popcount(num);
+    long long num2 = 165786578687;
+    int cnt2 = __builtin_popcountll(num2);
+    string s = "123";
+    sort(s.begin(), s.end());
+    do
+    {
+        cout << s << endl;
+    } while (next_permutation(s.begin(), s.end()));
+}
 
-### Queue (FIFO)
-```cpp
-queue<int> q;  
-q.push(10);  
-cout << q.front();  // Output: 10  
-```
-
-### Deque (Double-ended Queue)
-```cpp
-deque<int> dq;  
-dq.push_back(10);  
-dq.push_front(20);  
-dq.pop_front();  
-```
-
----
-
-## Conclusion
-C++ STL simplifies coding by providing **efficient, optimized** data structures and algorithms. 
-
+int main()
+{
+    explainPairs();
+    explainVectors();
+    explainList();
+    explainDeque();
+    explainStack();
+    explainQueue();
+    explainPQ();
+    explainSet();
+    explainMultiSet();
+    explainUSet();
+    explainMap();
+    explainMultimap();
+    explainUnorderedMap();
+    explainExtra();
+    return 0;
+}
