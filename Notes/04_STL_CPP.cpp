@@ -393,19 +393,19 @@ bool comp(pair<int, int> p1, pair<int, int> p2)
 void explainExtra()
 {
 
-    // sort(a, a + n); // [start,end)
-    // sort(v.begin(), v.end());
+    sort(a, a + n); // [start,end)
+    sort(v.begin(), v.end());
 
-    // sort(a + 2, a + 4); // we can sort a portion
+    sort(a + 2, a + 4); // we can sort a portion
 
-    // sort(a, a + n, greater<int>); // sort in descending order
+    sort(a, a + n, greater<int>); // sort in descending order
 
     // pair<int, int> a[] = {{1, 2}, {2, 1}, {4, 1}};
     // sort it according to second element
     // if second element is same, then sort
     // it according to first element but in decreasing
 
-    // sort(a, a + n, comp);
+    sort(a, a + n, comp);  // comp in line 380. it is a bool function
 
     int num = 7;
     int cnt = __builtin_popcount(num); // returns 3 , the number of set bits
@@ -415,6 +415,7 @@ void explainExtra()
     long long numll = 165786578687;
     cnt = __builtin_popcountll(numll); // if the number is long long
     cout<<cnt<<endl;
+    
 
     string s = "123";
     sort(s.begin(), s.end()); // always start from sorted
@@ -423,6 +424,7 @@ void explainExtra()
     {
         cout << s << endl; // 123, 132, 213, 231, 312, 321
     } while (next_permutation(s.begin(), s.end()));
+    
 
     int arr[] = {4, 2, 8, 1};
     int maxi = *max_element(arr, arr + 4);
