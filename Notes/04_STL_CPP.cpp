@@ -52,20 +52,21 @@ void explainVectors()
     v.push_back(10);
     v.push_back(20);
     v.push_back(30);
-    v.push_back(50);
+    v.push_back(50);  
+      // v is {10, 20, 30, 40, 50}
 
-    vector<int>::iterator it = v.begin();
+    vector<int>::iterator it = v.begin();  // iterator points to the memory where element is stored.
     it++;
     cout << *(it) << " "; // 20
 
     it = it + 2;
     cout << *(it) << " "; // 50
-
+    
     vector<int>::iterator it = v.end();  // * end will not point to last elemnt
     it will point right after last element
 
-    vector<int>::iterator it = v.rend();
-    vector<int>::iterator it = v.rbegin();
+    vector<int>::iterator it = v.rend(); // reverse end
+    vector<int>::iterator it = v.rbegin(); // reverse begin
 
     cout << v[0] << " " << v.at(0) << " "; // 10 10
 
@@ -99,26 +100,26 @@ void explainVectors()
     // *** Insert Function ***
 
     vector<int> v(2, 100);          // {100,100}
+       // - for adding one element
     v.insert(v.begin(), 300);      // {300, 100, 100}
-    v.insert(v.begin() + 1, 2, 10); // {300, 10, 10, 100, 100}
-
+       // -- for more elements but same ; eg- three 10's
+    v.insert(v.begin() + 1, 3, 10); // {300, 10, 10, 10, 100, 100}
+        
     vector<int> copy(2, 50);                                     // {50,50}
     v.insert(v.begin(), copy.begin(), copy.end()); // {50, 50, 300, 10, 10, 100, 100}
 
-    // {10,20}
-    cout << v.size(); // 7
+    cout << v.size(); // 7  ; size of vector
 
-    //{10,20}
-    v.pop_back(); //{50, 50, 300, 10, 10, 100}
-
-    // v1 --> {10,20};
+    v.pop_back(); //{50, 50, 300, 10, 10, 100}  removes last element
+    v.pop_front; //{50, 300, 10, 10, 100}  removes first element
+    // v1 --> {10,20};  
     // v2 --> {30,40};
-    // v1.swap(v2); // v1 --> {30,40}, v2 --> {10,20}
+    v1.swap(v2); // v1 --> {30,40}, v2 --> {10,20}
 
     v.clear(); // erases the entire vector
 
     cout << v.empty(); // 1
-
+       
     // for (auto it : v)
     // {
     //     cout << it << " ";
@@ -161,13 +162,14 @@ void explainDeque()
 //***Stack --> LIFO (Last in First out)
 
 void explainStack() // O(1) --> everythig happens in constant time
-{
+{           // LIFO - Last in First Out
+            // imagine it as stacking books on top of each, the last one u put will be on top.
     stack<int> st;
-    st.push(1);    // {1}
-    st.push(2);    // {2,1}
-    st.push(3);    // {3,2,1}
-    st.push(3);    // {3,3,2,1}
-    st.emplace(5); // {5,3,3,2,1}
+    st.push(1);    // {1}                  |   5   | - top
+    st.push(2);    // {2,1}                |   3   |
+    st.push(3);    // {3,2,1}              |   3   |
+    st.push(3);    // {3,3,2,1}            |   2   |
+    st.emplace(5); // {5,3,3,2,1}          |___1___|
 
     cout << st.top(); // 5
     // when st.pop() it deletes
@@ -182,7 +184,8 @@ void explainStack() // O(1) --> everythig happens in constant time
 }
 
 void explainQuue()
-{ // similar to stack buu FIFO --> First in First Out
+{ // similar to stack but FIFO --> First in First Out
+    // imagine it like people in line for buying tickets, first one on line gets first
     // O(1) --> all happens in constant time
     queue<int> q;
     q.push(1);    //{1}
@@ -210,7 +213,7 @@ void explainQuue()
     pop --> O(log n)
 */
 
-void explainPQ()
+void explainPQ()       // priority queue
 {
     // Maximum Heap
     priority_queue<int> pq;
@@ -219,7 +222,7 @@ void explainPQ()
     pq.push(2);    // {5,2}
     pq.push(8);    // {8,5,2}
     pq.emplace(10); // {10,8,5,2}
-
+ 
     cout << pq.top(); // 10
 
     pq.pop(); // {8,5,2} --> 10 poped (removed)
@@ -229,7 +232,7 @@ void explainPQ()
     // size, swap, empty function same as others
 
     // Minimum Heap
-    priority_queue<int, vector<int>, greater<int>> pqmin; // -> for minimum element at the top
+    priority_queue<int, vector<int>, greater<int>> pqmin; // -> for minimum element at the top  
 
     pqmin.push(5);    // {5}
     pqmin.push(2);    // {2,5}
@@ -238,13 +241,13 @@ void explainPQ()
 
     cout << pqmin.top(); // 2
 }
+    //   Time Complexity - push/pop : O(log n)
+    //                     top : O(1)
 
-/*
-    ** Set Container **
-    -> It stores everything in the sorted order
-    -> Stores unique // *UNIQUE
+    // ** Set Container **
+    // -> It stores everything in the sorted order
+    // -> Stores unique // *UNIQUE
 
-*/
 
 void explainSet() // O(lon n)
 {
@@ -317,7 +320,7 @@ void explainMultiSet()
 
 void explainUSet()
 {                                   // unordered set
-    unordered_set<int> st; // everything is similar to set
+    unordered_set<int> st; // everything is similar to set i.e unique
 
     // lower_bound and upper_bound function
     // does not works, rest all functions are same
@@ -329,7 +332,7 @@ void explainUSet()
 void explainMap()
 {
     // * map stores unique keys in sorted order
-
+    // values can be duplicate
     map<int, int> mpp; // {key,value}
 
     // map<int, pair<int, int>> mpp; // here key is integer, value is 2 integer
